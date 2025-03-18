@@ -1,0 +1,64 @@
+name: Specific Test
+description: Manual test trigger to run specific tests via different configurations
+
+on:
+  workflow_dispatch:
+    inputs:
+      ENV:
+        description: "Environment of running tests"
+        type: choice
+        options:
+          - prod
+          - custom
+      APP:
+        description: "Spec names of running tests"
+        type: choice
+        options:
+          - bbc
+          - typicode
+      SPEC_NAMES:
+        description: "Spec names of running tests"
+        required: true
+        default: ""
+      SPECS_FOLDER_NAME:
+        description: "Spec folder of running tests"
+        required: false
+        default: ""
+      SPECS_TYPE:
+        type: choice
+        description: "Specs type to run exact type of tests"
+        options:
+          - web
+          - api
+      IS_PARALLEL_RUN:
+        type: choice
+        description: "Is parallel flag to choose a run mode or not"
+        options:
+          - true
+          - false
+      CUSTOM_WEB_URL:
+        description: "Custom web url of running tests"
+        required: false
+      CUSTOM_API_URL:
+        description: "Custom api url of running tests"
+        required: false
+
+jobs:
+  specific-test:
+    name: "Specific Test Run"
+    uses: ./.github/workflows/reusable-test.yml
+    with:
+      APP: ${{ inputs.APP }}
+      ENV: ${{ inputs.ENV }}
+      SPEC_NAMES: ${{ inputs.SPEC_NAMES }}
+      SPECS_TYPE: ${{ inputs.SPECS_TYPE }}
+      SPECS_FOLDER_NAME: ${{ inputs.SPECS_FOLDER_NAME }}
+      HTML_REPORT_GENERATION: ${{ inputs.HTML_REPORT_GENERATION }}
+      HTML_REPORT_NAME: "specific"
+      TESTOMAT_REPORT_GENERATION: ${{ inputs.TESTOMAT_REPORT_GENERATION }}
+      TESTOMATIO_TITLE: "Specific"
+      IS_PARALLEL_RUN: ${{ inputs.IS_PARALLEL_RUN }}
+      CUSTOM_WEB_URL: ${{ inputs.CUSTOM_WEB_URL }}
+      CUSTOM_API_URL: ${{ inputs.CUSTOM_API_URL }}
+    secrets:
+      TESTOMAT_API_KEY: ${{ secrets.TESTOMAT_API_KEY }}

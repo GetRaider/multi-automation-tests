@@ -1,0 +1,114 @@
+name: Reusable Test
+description: Generic workflow to build all test's workflows
+
+on:
+  workflow_call:
+    inputs:
+      APP:
+        description: "App of running tests"
+        required: true
+        type: string
+      ENV:
+        description: "Environment of running tests"
+        required: true
+        type: string
+      SPEC_NAMES:
+        description: "Spec names of running tests"
+        required: false
+        type: string
+      SPECS_TYPE:
+        description: "Spec type of running tests"
+        required: true
+        type: string
+      SPECS_FOLDER_NAME:
+        description: "Spec relative folder name of running tests"
+        required: false
+        type: string
+      IS_PARALLEL_RUN:
+        description: "Parallel run flag of running tests"
+        required: false
+        default: "false"
+        type: string
+      CUSTOM_WEB_URL:
+        description: "Custom web url to run tests against different URLs"
+        required: false
+        type: string
+      CUSTOM_API_URL:
+        description: "Custom api url to run tests against different URLs"
+        required: false
+        type: string
+      HTML_REPORT_NAME:
+        description: "HTML report name"
+        required: true
+        type: string
+      HTML_REPORT_GENERATION:
+        description: "HTML report generation"
+        required: false
+        default: "onFailure"
+        type: string
+      TESTOMAT_REPORT_GENERATION:
+        description: "Testomat test run report generation"
+        required: false
+        default: "true"
+        type: string
+      TESTOMATIO_TITLE:
+        description: "Title of test run in the Testomat"
+        required: false
+        type: string
+    secrets:
+      TESTOMAT_API_KEY:
+        description: "API key to sync with Testomat"
+        required: true
+
+jobs:
+  test:
+    timeout-minutes: 60
+    env:
+      SPECS_TYPE: ${{ inputs.SPECS_TYPE }}
+      SPEC_NAMES: ${{ inputs.SPEC_NAMES }}
+      SPECS_FOLDER_NAME: ${{ inputs.SPECS_FOLDER_NAME }}
+      IS_PARALLEL_RUN: ${{ inputs.IS_PARALLEL_RUN }}
+      CUSTOM_WEB_URL: ${{ inputs.CUSTOM_WEB_URL }}
+      CUSTOM_API_URL: ${{ inputs.CUSTOM_API_URL }}
+      HTML_REPORT_GENERATION: ${{ inputs.HTML_REPORT_GENERATION }}
+      TESTOMAT_REPORT_GENERATION: ${{ inputs.TESTOMAT_REPORT_GENERATION }}
+      TESTOMAT_API_KEY: ${{ secrets.TESTOMAT_API_KEY }}
+    runs-on: ubuntu-latest
+    container:
+      image: mcr.microsoft.com/playwright:v1.51.1-jammy
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          cache: npm
+          node-version: 18.20.7
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Code Check
+        run: npm run codeCheck
+
+      - name: Verify env config
+        run: npm run verify-env
+
+      - name: Set current datetime
+        run: |
+          CURRENT_DATETIME=$(date +"%Y-%m-%d %H:%M:%S")
+          echo "CURRENT_DATETIME=$CURRENT_DATETIME" >> $GITHUB_ENV
+
+      - name: Run Playwright tests
+        run: npx playwright test
+        env:
+          TESTOMATIO_TITLE: "${{ inputs.TESTOMATIO_TITLE }} by ${{ github.actor }} at: ${{ env.CURRENT_DATETIME }}"
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        if: ${{ (inputs.HTML_REPORT_GENERATION == 'true') || (failure() && inputs.HTML_REPORT_GENERATION == 'onFailure') }}
+        with:
+          name: "${{ inputs.HTML_REPORT_NAME }}-playwright-report"
+          path: "artifacts/reports/playwright-report/"
+          retention-days: 30
