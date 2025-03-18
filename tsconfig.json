@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+    "tsBuildInfoFile": "./.tsbuildinfo",
+    "moduleResolution": "Node",
+    "module": "CommonJS",
+    "target": "es2022",
+    "types": ["node"],
+    "lib": ["ESNext", "dom"],
+    "skipLibCheck": true,
+    "alwaysStrict": true,
+    "strictFunctionTypes": true,
+    "noImplicitThis": true,
+    "noImplicitOverride": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "useDefineForClassFields": false,
+    "experimentalDecorators": true,
+    "paths": {
+      "@shared-api/*": ["./src/shared/api/*"],
+      "@shared-web/*": ["./src/shared/web/*"],
+      "@helpers/*": ["./src/helpers/*"],
+      "@constants/*": ["./src/constants/*"],
+      "@fixtures/*": ["./src/fixtures/*"],
+      "@decorators": ["./src/decorators/*"],
+      "@magic-strings/*": ["./src/magic-strings/*"]
+    }
+  },
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  },
+  "exclude": ["./node_modules"]
+}

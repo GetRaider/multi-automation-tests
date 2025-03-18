@@ -1,0 +1,56 @@
+{
+  "name": "multi-automation-tests",
+  "type": "commonjs",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=18.20.7",
+    "npm": ">=10.8.2"
+  },
+  "scripts": {
+    "verify-env": "ts-node src/tools/verify-env.tool.ts",
+    "test": "npm run verify-env && playwright test --headed",
+    "test:ui": "npm run verify-env && playwright test --ui",
+    "test:debug": "npm run verify-env && playwright test --debug",
+    "test:headless": "npm run verify-env && playwright test",
+    "lint:staged": "eslint '*.ts' --fix",
+    "lint": "eslint 'src/**/*.{js,ts,tsx}'",
+    "linter": "eslint . --ext .ts",
+    "codeCheck": "tsc && npm run linter",
+    "prepare": "husky install",
+    "postinstall": "npx ts-node src/tools/env.tool.ts && npx playwright install --with-deps"
+  },
+  "author": "Andrew Polovets",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "log4js": "6.9.1",
+    "lodash": "4.17.21",
+    "dotenv": "16.3.1",
+    "prettier": "2.8.8"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.51.1",
+    "@types/node": "20.14.5",
+    "@types/lodash": "4.14.202",
+    "@typescript-eslint/eslint-plugin": "6.0.0",
+    "@typescript-eslint/parser": "6.0.0",
+    "@testomatio/reporter": "1.5.3",
+    "ts-node": "10.9.1",
+    "typescript": "5.2.2",
+    "husky": "8.0.3",
+    "pre-commit": "1.2.2",
+    "pretty-quick": "3.1.3",
+    "lint-staged": "13.2.1",
+    "prettier": "2.8.8",
+    "eslint": "8.39.0",
+    "eslint-config-prettier": "8.8.0",
+    "eslint-plugin-prettier": "4.0.0",
+    "eslint-plugin-unused-imports": "3.0.0",
+    "tsconfig-paths": "4.2.0"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix"
+    ]
+  }
+}

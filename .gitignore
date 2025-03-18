@@ -1,0 +1,12 @@
+.idea
+.vscode
+.DS_Store
+
+node_modules/
+/artifacts
+/blob-report/
+/playwright/.cache/
+
+.env
+.tsbuildinfo
+logs/
