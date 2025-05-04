@@ -19,7 +19,7 @@ export class SearchService extends BaseService {
   }
 
   async getAllShownTitles(): Promise<string[]> {
-    const buttons = await this.page.searchResultTitles.getAllElements();
+    const buttons = await this.page.searchResultTitles.getAll();
     const titles = [];
     for (const button of buttons) {
       const rawTitle = await button.getText();

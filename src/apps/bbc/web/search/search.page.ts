@@ -13,7 +13,7 @@ export class SearchPage extends BasePage {
 
   searchResultTitles = new ElementsList(
     ButtonElement,
-    this.elementFinder.class("ssrcss-1nzemmm-PromoHeadline exn3ah96").all,
+    this.elementFinder.class("ssrcss-1nzemmm-PromoHeadline exn3ah96"),
   );
   searchInput = new InputElement(this.elementFinder.id("searchInput"));
   searchButton = new ButtonElement(this.elementFinder.id("searchButton"));

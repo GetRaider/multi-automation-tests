@@ -12,7 +12,7 @@ export class MainPage extends BasePage {
 
   navigationButtons = new ElementsList(
     ButtonElement,
-    this.elementFinder.testId("mainNavigationLink").all,
+    this.elementFinder.testId("mainNavigationLink"),
   );
   searchButton = new ButtonElement(
     this.elementFinder.class("ssrcss-1xu0338-GlobalNavigationItem eki2hvo25"),
