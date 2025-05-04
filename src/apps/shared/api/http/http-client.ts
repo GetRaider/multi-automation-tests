@@ -1,4 +1,4 @@
-import { APIRequestContext } from "playwright-core";
+import { APIRequestContext } from "@playwright/test";
 
 import {
   IBaseApiRequestArgs,

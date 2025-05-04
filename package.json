@@ -3,20 +3,21 @@
   "type": "commonjs",
   "version": "1.0.0",
   "engines": {
-    "node": ">=18.20.7",
-    "npm": ">=10.8.2"
+    "node": ">=20.18.0"
   },
+  "packageManager": "pnpm@10.9.0",
   "scripts": {
     "verify-env": "ts-node src/tools/verify-env.tool.ts",
-    "test": "npm run verify-env && playwright test --headed",
-    "test:ui": "npm run verify-env && playwright test --ui",
-    "test:debug": "npm run verify-env && playwright test --debug",
-    "test:headless": "npm run verify-env && playwright test",
+    "test": "pnpm run verify-env && playwright test --headed",
+    "test:ui": "pnpm run verify-env && playwright test --ui",
+    "test:debug": "pnpm run verify-env && playwright test --debug",
+    "test:headless": "pnpm run verify-env && playwright test",
     "lint:staged": "eslint '*.ts' --fix",
     "lint": "eslint 'src/**/*.{js,ts,tsx}'",
     "linter": "eslint . --ext .ts",
     "codeCheck": "tsc && npm run linter",
     "prepare": "husky install",
+    "preinstall": "npx only-allow pnpm",
     "postinstall": "npx ts-node src/tools/env.tool.ts && npx playwright install --with-deps"
   },
   "author": "Andrew Polovets",
@@ -29,7 +30,7 @@
     "prettier": "2.8.8"
   },
   "devDependencies": {
-    "@playwright/test": "1.51.1",
+    "@playwright/test": "1.52.0",
     "@types/node": "20.14.5",
     "@types/lodash": "4.14.202",
     "@typescript-eslint/eslint-plugin": "6.0.0",

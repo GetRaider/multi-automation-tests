@@ -6,7 +6,6 @@ import {
 } from "@constants/test.constants";
 import { envHelper } from "@helpers/env/env.helper";
 import { magicStrings } from "@constants/magic-strings.constants";
-import { primitiveHelper } from "@helpers/index.helpers";
 
 testHelper.runSuite({
   name: "Sign-In, Negative validations",
