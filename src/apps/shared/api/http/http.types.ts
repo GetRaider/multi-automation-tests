@@ -1,9 +1,7 @@
-import { Serializable } from "playwright-core/types/structs";
-
 export interface IBaseApiRequestArgs {
   url: string;
   headers?: Record<string, string>;
-  body?: string | Buffer | Serializable;
+  body?: unknown;
   timeout?: number;
 }
 
