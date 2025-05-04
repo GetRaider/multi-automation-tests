@@ -6,12 +6,12 @@
 
 ## Pre-requisites
 
-- [node.js](https://nodejs.org/en) >= 18.20.7
-- [npm](https://nodejs.org/en) >= 10.8.2
+- [node.js](https://nodejs.org/en) >= 20.18.0
+- [pnpm](https://pnpm.io/) >= 10.9.0
 
 ## Pre-conditions
 
-1. Execute `npm install`
+1. Execute `pnpm install`
 
 ## Environment Variables
 
@@ -33,19 +33,19 @@
 
 - _**headed**_ - with opening browser (command can be shortened to `npm t`)
 
-`npm run test`
+`pnpm test`
 
 - _**ui**_ - with opening browser in specified app with all devtools, traces, and other playwright features
 
-`npm run test:ui`
+`pnpm test:ui`
 
 - _**debug**_ - with opening browser and specified debug app to pause/resume test
 
-`npm run test:debug`
+`pnpm test:debug`
 
 - _**headless**_ - without opening browser and other playwright features
 
-`npm run test:headless`
+`pnpm test:headless`
 
 ## CI test/s execution by the "Specific Test" trigger:
 
