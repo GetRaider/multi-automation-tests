@@ -2,7 +2,7 @@ import { MainPage } from "./main.page";
 import { BaseService } from "@shared-web/services/base/base.service";
 import { IMainActionsArgs } from "./main.types";
 import { CookiePage } from "../cookie/cookie.page";
-import { ClassLog } from "../../../../decorators/logger.decorators";
+import { ClassLog } from "../../../../decorators/logger.decorator";
 
 @ClassLog
 export class MainService extends BaseService {

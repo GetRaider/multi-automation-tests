@@ -13,6 +13,7 @@ export class SportService extends BaseService {
 
   async getAllCurrentMatches(): Promise<string[]> {
     const matchButtons = await this.page.matchButtons.getAllElements();
+    console.log({ matchButtons });
     const normalizedMatchInfo: string[] = [];
     for (const matchButton of matchButtons) {
       const matchRawInfo = await matchButton.getText();

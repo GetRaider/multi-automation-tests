@@ -7,14 +7,14 @@ import {
 import { BasePage } from "@shared-web/pages/base/base.page";
 
 export class SportPage extends BasePage {
-  constructor(protected override ef: ElementFinderHelper) {
-    super(ef);
+  constructor(protected override elementFinder: ElementFinderHelper) {
+    super(elementFinder);
   }
 
-  header = new LabelElement(this.ef.testId("masthead"));
+  header = new LabelElement(this.elementFinder.testId("masthead"));
   matchButtons = new ElementsList(
     ButtonElement,
-    this.ef.all.className("ssrcss-53e6q1-StyledHeadToHead e64wp3e0"),
+    this.elementFinder.class("ssrcss-53e6q1-StyledHeadToHead e64wp3e0"),
   );
 
   staticElements = [this.header];

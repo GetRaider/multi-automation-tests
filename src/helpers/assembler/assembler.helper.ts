@@ -38,7 +38,7 @@ export class AssemblerHelper {
 
   web(): IWeb {
     return {
-      app: this.assembledAllServices(
+      app: this.assembleAllServices(
         appRawServices[this.currentAppName],
         this.currentAppName,
       ),
@@ -46,10 +46,7 @@ export class AssemblerHelper {
     };
   }
 
-  private assembledAllServices(
-    rawServices: RawServices,
-    appName: App,
-  ): WebApps {
+  private assembleAllServices(rawServices: RawServices, appName: App): WebApps {
     if (!rawServices) throw `No services provided for '${appName}' app`;
     const assembledServices = { [appName]: {} } as WebApps;
     Object.entries(rawServices).forEach(([name, serviceArgs]) => {

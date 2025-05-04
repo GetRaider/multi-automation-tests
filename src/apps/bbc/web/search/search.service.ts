@@ -1,7 +1,7 @@
 import { SearchPage } from "./search.page";
 import { BaseService } from "@shared-web/services/index.services";
 import { ISearchServiceArgs } from "./search.types";
-import { ClassLog } from "../../../../decorators/logger.decorators";
+import { ClassLog } from "../../../../decorators/logger.decorator";
 
 @ClassLog
 export class SearchService extends BaseService {
@@ -14,7 +14,7 @@ export class SearchService extends BaseService {
   }
 
   async searchByText(text: string): Promise<void> {
-    await this.page.searchInput.enterText(text);
+    await this.page.searchInput.fill(text);
     await this.page.searchButton.click();
   }
 

@@ -17,8 +17,8 @@
     "useDefineForClassFields": false,
     "experimentalDecorators": true,
     "paths": {
-      "@shared-api/*": ["./src/shared/api/*"],
-      "@shared-web/*": ["./src/shared/web/*"],
+      "@shared-api/*": ["./src/apps/shared/api/*"],
+      "@shared-web/*": ["./src/apps/shared/web/*"],
       "@helpers/*": ["./src/helpers/*"],
       "@constants/*": ["./src/constants/*"],
       "@fixtures/*": ["./src/fixtures/*"],

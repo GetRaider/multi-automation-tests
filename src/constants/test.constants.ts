@@ -1,12 +1,4 @@
-export const existingEmails = [
-  "e@gmail.com",
-  "t@gmail.com",
-  "j@gmail.com",
-  "l@gmail.com",
-  "q@gmail.com",
-  "w@gmail.com",
-  "u@gmail.com",
-];
+export const existingEmail = "a@gmail.com";
 
 export const signInValidationMessageCases = {
   emptyField: "Enter your email",

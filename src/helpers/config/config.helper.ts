@@ -2,6 +2,7 @@ import { processEnv } from "../processEnv/processEnv.helper";
 import { magicStrings } from "@constants/magic-strings.constants";
 import { envHelper } from "../env/env.helper";
 import { primitiveHelper } from "../primitive/primitive.helper";
+import { ReporterDescription } from "@playwright/test";
 
 class ConfigHelper {
   getTestRetry(): number {
@@ -13,8 +14,8 @@ class ConfigHelper {
     return this.isParallelRun() ? undefined : 1;
   }
 
-  getReportersList(): unknown {
-    const commonReporters: unknown[] = [
+  getReportersList(): ReporterDescription[] {
+    const commonReporters: ReporterDescription[] = [
       [
         "html",
         {
