@@ -75,7 +75,7 @@ jobs:
       TESTOMAT_API_KEY: ${{ secrets.TESTOMAT_API_KEY }}
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.51.1-jammy
+      image: mcr.microsoft.com/playwright:v1.52.0-jammy
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -83,17 +83,17 @@ jobs:
       - name: Install Node
         uses: actions/setup-node@v4
         with:
-          cache: npm
-          node-version: 18.20.7
+          cache: pnpm
+          node-version: 20.18.0
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm ci
 
       - name: Code Check
-        run: npm run codeCheck
+        run: pnpm run codeCheck
 
       - name: Verify env config
-        run: npm run verify-env
+        run: pnpm run verify-env
 
       - name: Set current datetime
         run: |
