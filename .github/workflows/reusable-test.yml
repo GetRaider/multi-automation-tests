@@ -80,14 +80,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Install PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.9.0
+
       - name: Install Node
         uses: actions/setup-node@v4
         with:
-          cache: pnpm
           node-version: 20.18.0
+          cache: "pnpm"
 
-      - name: Install dependencies
-        run: pnpm ci
+      - name: Install Dependencies
+        run: pnpm install
 
       - name: Code Check
         run: pnpm run codeCheck
