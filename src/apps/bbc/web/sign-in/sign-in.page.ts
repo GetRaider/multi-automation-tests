@@ -7,34 +7,36 @@ import {
 import { BasePage } from "@shared-web/pages/index.pages";
 
 export class SignInPage extends BasePage {
-  constructor(protected override ef: ElementFinderHelper) {
-    super(ef);
+  constructor(protected override elementFinder: ElementFinderHelper) {
+    super(elementFinder);
   }
 
-  emailInput = new InputElement(this.ef.testId("input"));
-  passwordInput = new InputElement(this.ef.id("password-input"));
+  emailInput = new InputElement(this.elementFinder.testId("input"));
+  passwordInput = new InputElement(this.elementFinder.name("password"));
 
-  revealPasswordButton = new ButtonElement(this.ef.id("toggle-password-type"));
-  continueButton = new ButtonElement(this.ef.id("submit-button"));
+  revealPasswordButton = new ButtonElement(
+    this.elementFinder.id("toggle-password-type"),
+  );
+  continueButton = new ButtonElement(this.elementFinder.id("submit-button"));
 
   emailValidationMessageLabel = new LabelElement(
-    this.ef.className("sb-field__message-container"),
+    this.elementFinder.class("sb-field__message-container"),
   );
   nonExistingEmailValidationMessageLabel = new LabelElement(
-    this.ef.className(
+    this.elementFinder.class(
       "sb-form-message sb-form-message--error sb-form-message--general",
     ),
   );
   passwordValidationMessageLabel = new LabelElement(
-    this.ef.className(
+    this.elementFinder.class(
       "sb-form-message sb-form-message--error sb-form-message--password",
     ),
   );
   emptyPasswordValidationMessageLabel = new LabelElement(
-    this.ef.id("form-message-password"),
+    this.elementFinder.id("form-message-password"),
   );
   generalValidationMessageLabel = new LabelElement(
-    this.ef.id("form-message-general"),
+    this.elementFinder.id("form-message-general"),
   );
 
   staticElements = [this.emailInput];

@@ -1,7 +1,7 @@
 import { loggerHelper } from "@helpers/logger/logger.helper";
 import { IDropdownArgs, BaseElement } from "../index.elements";
 
-const logger = loggerHelper.get("DropdownPe");
+const logger = loggerHelper.get("DropdownElement");
 
 export class DropdownElement<Options> extends BaseElement {
   readonly options: Options = null;

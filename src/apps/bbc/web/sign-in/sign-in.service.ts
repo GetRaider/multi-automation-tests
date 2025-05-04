@@ -1,11 +1,11 @@
 import { SignInPage } from "./sign-in.page";
 import { ISignInServiceArgs } from "./sign-in.types";
 import { BaseService } from "@shared-web/services/base/base.service";
-import { ClassLog } from "../../../../decorators/logger.decorators";
+import { ClassLog } from "../../../../decorators/logger.decorator";
 
 @ClassLog
 export class SignInService extends BaseService {
-  protected override page: SignInPage = null;
+  public override page: SignInPage = null;
 
   constructor(args: ISignInServiceArgs) {
     const { page } = args;
@@ -30,11 +30,11 @@ export class SignInService extends BaseService {
   }
 
   async enterEmail(text: string): Promise<void> {
-    return this.page.emailInput.enterText(text);
+    return this.page.emailInput.fill(text);
   }
 
   async enterPassword(text: string): Promise<void> {
-    return this.page.passwordInput.enterText(text);
+    return this.page.passwordInput.fill(text);
   }
 
   async submit(): Promise<void> {

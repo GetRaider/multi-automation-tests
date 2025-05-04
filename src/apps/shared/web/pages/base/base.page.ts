@@ -1,12 +1,12 @@
 import { BrowserContext } from "@playwright/test";
 
-import { ElementFinderInterface } from "@helpers/element-finder/types/element-finder.types";
 import { timeouts } from "@constants/timeouts.constants";
 import { promiseHelper } from "@helpers/promise/promise.helper";
 import { loggerHelper } from "@helpers/logger/logger.helper";
-import { ClassLog } from "../../../../decorators/logger.decorators";
+import { ClassLog } from "../../../../../decorators/logger.decorator";
 import { BaseElement } from "../../elements/base/base.element";
 import { IIsOpenOpts } from "../index.pages";
+import { ElementFinderHelper } from "@helpers/element-finder/element-finder.helper";
 
 const logger = loggerHelper.get("BasePo");
 
@@ -14,7 +14,7 @@ const logger = loggerHelper.get("BasePo");
 export abstract class BasePage {
   protected abstract staticElements: BaseElement[];
 
-  protected constructor(protected ef: ElementFinderInterface) {}
+  protected constructor(protected elementFinder: ElementFinderHelper) {}
 
   async navigateToNewTab(
     currentBrowserContext: BrowserContext,
@@ -29,7 +29,7 @@ export abstract class BasePage {
 
   async isOpen(options: IIsOpenOpts = {}): Promise<boolean> {
     let { retry = 0 } = options;
-    const { timeout = timeouts.isOpenPage, shouldWaitForExist = false } =
+    const { timeout = timeouts.isPageOpen, shouldWaitForExist = false } =
       options;
     const isDisplayedPromises = this.staticElements.map(element => {
       return shouldWaitForExist

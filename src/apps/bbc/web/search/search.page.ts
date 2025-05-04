@@ -7,17 +7,16 @@ import {
 } from "@shared-web/elements/index.elements";
 
 export class SearchPage extends BasePage {
-  constructor(protected override ef: ElementFinderHelper) {
-    super(ef);
+  constructor(protected override elementFinder: ElementFinderHelper) {
+    super(elementFinder);
   }
 
   searchResultTitles = new ElementsList(
     ButtonElement,
-    this.ef.all.className("ssrcss-1nzemmm-PromoHeadline exn3ah96"),
+    this.elementFinder.class("ssrcss-1nzemmm-PromoHeadline exn3ah96"),
   );
-
-  searchInput = new InputElement(this.ef.id("searchInput"));
-  searchButton = new ButtonElement(this.ef.id("searchButton"));
+  searchInput = new InputElement(this.elementFinder.id("searchInput"));
+  searchButton = new ButtonElement(this.elementFinder.id("searchButton"));
 
   staticElements = [this.searchButton];
 }

@@ -10,7 +10,7 @@ export const test = base.extend<IFixtures>({
   web: async ({ page: pwPage, context: pwContext }, use) => {
     const assembler = new AssemblerHelper({
       browserHelper: new BrowserHelper({ pwPage, pwContext }),
-      elementFinder: new ElementFinderHelper({ pwPage }),
+      elementFinder: new ElementFinderHelper(pwPage),
     });
     const web = assembler.web();
     await use(web);

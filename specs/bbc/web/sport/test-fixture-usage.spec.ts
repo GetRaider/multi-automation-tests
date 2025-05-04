@@ -9,7 +9,6 @@ test.describe("Sport section", () => {
   });
 
   test("Some matches are present", async ({ web }) => {
-    await web.app.bbc.sport.getAllCurrentMatches();
     const allCurrentMatches = await web.app.bbc.sport.getAllCurrentMatches();
     expect(allCurrentMatches.length).toBeGreaterThanOrEqual(0);
     console.debug({ allCurrentMatches });

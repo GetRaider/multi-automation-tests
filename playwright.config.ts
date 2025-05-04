@@ -14,14 +14,16 @@ export default defineConfig({
   fullyParallel: configHelper.isParallelRun() || undefined,
   workers: configHelper.getWorkers(),
   outputDir: `${magicStrings.path.artifacts}/test-results`,
-  use: { trace: "on", video: "on" },
+  use: {
+    trace: "on",
+    video: envHelper.isCI ? "on" : "off",
+    actionTimeout: timeouts.action,
+  },
   projects: [
     {
       name: "chromium",
       use: { ...devices["Desktop Chrome"] },
     },
   ],
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore
   reporter: configHelper.getReportersList(),
 });

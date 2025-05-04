@@ -13,7 +13,6 @@ testHelper.runSuite({
     {
       name: "Some matches are present",
       test: async ({ web }) => {
-        await web.app.bbc.sport.getAllCurrentMatches();
         const allCurrentMatches =
           await web.app.bbc.sport.getAllCurrentMatches();
         expect(allCurrentMatches.length).toBeGreaterThanOrEqual(0);
@@ -23,6 +22,9 @@ testHelper.runSuite({
     {
       name: `Header is present`,
       test: async ({ web }) => {
+        await web.browser.openUrl(
+          `${envHelper.getBaseUrl()}/sport/football/scores-fixtures`,
+        );
         expect(await web.app.bbc.sport.isHeaderDisplayed()).toBeTruthy();
       },
     },

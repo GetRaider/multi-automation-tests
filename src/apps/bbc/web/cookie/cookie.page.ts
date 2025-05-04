@@ -1,17 +1,19 @@
 import { ElementFinderHelper } from "@helpers/element-finder/element-finder.helper";
+import { ElementAttribute } from "@helpers/element-finder/element-finder.helpet.types";
 import { ButtonElement } from "@shared-web/elements/index.elements";
 
 export class CookiePage {
-  constructor(protected ef: ElementFinderHelper) {}
+  constructor(protected elementFinder: ElementFinderHelper) {}
 
-  private readonly frameLocator = "#sp_message_iframe_1091681";
+  iframe = this.elementFinder.custom({
+    attributeName: ElementAttribute.className,
+    attributeValue: "#sp_message_iframe_1091681",
+  });
 
   rejectCookieButton = new ButtonElement(
-    this.ef.title("I do not agree", {
-      frameLocator: this.frameLocator,
-    }),
+    this.iframe.locator(this.elementFinder.title("I do not agree")),
   );
   acceptCookieButton = new ButtonElement(
-    this.ef.title("I agree", { frameLocator: this.frameLocator }),
+    this.iframe.locator(this.elementFinder.title("I agree")),
   );
 }

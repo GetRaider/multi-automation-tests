@@ -4,16 +4,16 @@ const { TEST_TIMEOUT, TEST_RUN_TIMEOUT } = processEnv;
 
 export const timeouts = {
   get test(): number {
-    return Number(TEST_TIMEOUT) ?? timeouts.minute * 3;
+    return Number(TEST_TIMEOUT) ?? timeouts.xl;
   },
   get testRun(): number {
-    return Number(TEST_RUN_TIMEOUT) ?? timeouts.minute * 55;
+    return Number(TEST_RUN_TIMEOUT) ?? timeouts.minute * 60;
   },
-  get isOpenPage(): number {
-    return this.m;
+  get isPageOpen(): number {
+    return this.s;
   },
   get action(): number {
-    return this.xxxxs;
+    return this.xxxs;
   },
   animation: 250,
   xxxxs: 500,

@@ -5,7 +5,7 @@ import {
 } from "@shared-api/index.api";
 
 import { ITodo } from "./todo.controller.types";
-import { ClassLog } from "../../../../decorators/logger.decorators";
+import { ClassLog } from "../../../../decorators/logger.decorator";
 
 @ClassLog
 export class TodoController extends BaseController {
